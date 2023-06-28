@@ -1,12 +1,15 @@
 export default function iterateThroughObject(reportWithIterator) {
   let result = '';
+  let iterator = reportWithIterator.next();
 
-  for (const item of reportWithIterator) {
-    result += `${item} | `;
+  while (!iterator.done) {
+    result += iterator.value;
+    iterator = reportWithIterator.next();
+
+    if (!iterator.done) {
+      result += ' | ';
+    }
   }
-
-  // Remove the trailing ' | ' characters
-  result = result.slice(0, -3);
 
   return result;
 }
